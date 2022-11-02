@@ -18,8 +18,8 @@ const PageHOC = (Component, title, description) => () => {
             <p className={`${styles.normalText} my-10`}>{description}</p>
             <Component />
         </div>
-        <a href='https://bchaindev.com/'>
-        <p className={styles.footerText}>Made with 💜 by BChainDev</p>
+        <a href='https://bchaindev.com/' target="_blank">
+        <p className={styles.footerText} >Constructed by BChainDev</p>
         </a>
         </div>
         <div className='flex flex-1'>

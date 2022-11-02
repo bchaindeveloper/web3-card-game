@@ -1,15 +1,17 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { ethers } from 'ethers';
-import web3Modal from 'web3modal';
+import Web3Modal from 'web3modal';
 import { useNavigate } from 'react-router-dom';
 import { ABI, ADDRESS } from '../contract';
 
 const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
-    const [walletAddress, setWalletAddress] = useState(' ');
+    const [walletAddress, setWalletAddress] = useState('');
     const [provider, setProvider] = useState('');
     const [contract, setContract] = useState('');
+    const [showAlert, setShowAlert] = useState({ status: false, type: 'info', message: '' });
+
 
     //* Set the wallet address to the state
     const updateCurrentWalletAddress = async () => {
@@ -29,10 +31,10 @@ export const GlobalContextProvider = ({ children }) => {
     //* Set the snart contract, the provider to the state
     useEffect(() => {
         const setSmartConttractAndProvider = async () => {
-            const web3Modal = new web3Modal();
+            const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             const newProvider = new ethers.providers.Web3Provider(connection);
-            const signer = newProvider.signer();
+            const signer = newProvider.getSigner();
             const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
             setProvider(newProvider);
@@ -41,10 +43,19 @@ export const GlobalContextProvider = ({ children }) => {
         setSmartConttractAndProvider();
     }, [])
 
+    useEffect(() => {
+        if(showAlert?.status) {
+            const timer = setTimeout(() => {
+                setShowAlert({ status: 'false', type: 'info', message: ''})
+            }, [5000])
+
+            return () => clearTimeout(timer);
+        }
+    }, [showAlert]);
 
     return (
         <GlobalContext.Provider value={{
-            contract, walletAddress
+            contract, walletAddress, showAlert, setShowAlert
         }}>
             {children}
         </GlobalContext.Provider>
