@@ -9,20 +9,23 @@ const Home = () => {
   const handleClick = async () => {
     try {
       const playerExists = await contract.isPlayer(walletAddress);
-      if(!playerExists) {
-        await contract.registerPlayer(playerName, playerName);
+
+      if (!playerExists) {
+        await contract.registerPlayer(playerName, playerName, { gasLimit: 500000 });
 
         setShowAlert({
-          status: 'true',
+          status: true,
           type: 'info',
-          message: `${playerName} is being summoned!`
-        })
+          message: `${playerName} is being summoned!`,
+        });
+
+        setTimeout(() => navigate('/create-battle'), 8000);
       }
     } catch (error) {
-      alert(error);
+      setErrorMessage(error);
     }
-  } 
-  
+  };
+
   return (
     <div className='flex flex-col'>
       <CustomInput
