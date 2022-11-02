@@ -3,10 +3,10 @@ import { useGlobalContext } from '../context';
 import { PageHOC } from '../components';
 
 const Home = () => {
-  const { demo } = useGlobalContext();
+  const { contract, walletAddress } = useGlobalContext();
   return (
     <div>
-      <h1 className='text-xl text-white'>{demo}</h1>
+      <h1 className='text-xl text-white'>{}</h1>
     </div>
   )
 };
