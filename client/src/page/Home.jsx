@@ -8,7 +8,10 @@ const Home = () => {
   
   const handleClick = async () => {
     try {
-      await contract.isPlayer(walletAddress);
+      const playerExists = await contract.isPlayer(walletAddress);
+      if(!payerExists) {
+        await contract.registerPlayer(playerName, playerName);
+      }
     } catch (error) {
       alert(error);
     }
