@@ -1,5 +1,9 @@
 # web3 NFT Card Game
 
+## Work in progress....
+
+
+
 A web3 application that uses a Avalance smart contract to create a NFT card game. 
 
 
