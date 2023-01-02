@@ -1,6 +1,6 @@
 # web3 NFT Card Game
 
-## Work in progress....
+## Work in progress...
 
 
 
