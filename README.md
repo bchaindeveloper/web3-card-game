@@ -2,6 +2,9 @@
 
 Under Construction...
 
-This project was created by using the following JavaScript Mastery tutorial.
+
+# Credit:
+
+JavaScript Mastery tutorial.
 https://www.youtube.com/watch?v=C9ctoK4M9Bk
 
